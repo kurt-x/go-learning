@@ -1,8 +1,10 @@
 package main
 
+import "go-learning/lib" // 导入包
+
+// 导入多个包
 import (
 	"fmt"
-	"go-learning/lib"
 	"rsc.io/quote"
 )
 
