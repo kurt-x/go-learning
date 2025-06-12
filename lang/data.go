@@ -57,7 +57,7 @@ func main() {
 
 	fmt.Printf("零值：(%d) (%t), (%s)", e1, e2, e3)
 	pi := 3.14
-	var i int = int(pi) // 类型转换，不同类型必须显式转换
+	var i = int(pi) // 类型转换，不同类型必须显式转换
 	fmt.Println(pi, i)
 
 	var _ = 10   // int
