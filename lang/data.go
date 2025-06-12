@@ -63,4 +63,72 @@ func main() {
 	var _ = 10   // int
 	var _ = 10.0 // float64
 	var _ = 0.1i // complex128
+
+	// 指针
+	// *T 是指向 T 类型的指针
+	var p *int
+
+	p = &i
+	fmt.Println(p, *p)
+	*p = 100
+	fmt.Println(p, *p)
+
+	// 结构体
+	type Vertex struct {
+		X int
+		Y int
+	}
+
+	vtx := Vertex{1, 2}
+	vtx.X = 4
+	fmt.Println(vtx.X, vtx.Y)
+
+	ptr := &vtx
+	fmt.Println(ptr.X, ptr.Y) // 隐式解引用
+
+	_ = Vertex{Y: 3}
+
+	// 数组: [n]T
+	var _ [2]string
+	arr := [3]string{"a", "b", "c"}
+	fmt.Println(arr[2])
+
+	// 切片: []T
+	var _ []string
+	sli := []string{"a", "b", "c"}
+	fmt.Println(sli[2])
+
+	// 使用索引创建切片
+	_ = arr[1:2]
+	_ = sli[1:2]
+	_ = arr[1:]
+	_ = arr[:2]
+	_ = arr[:] // 引用全部
+	// 更改切片会修改被引用数组中的数据
+	// 直接声明切片就是先声明一个数组然后引用
+	fmt.Println(len(arr[1:2]), cap(arr[1:2])) // 长度和容量
+
+	// make 函数创建切片
+	arr2 := make([]int, 5)
+	fmt.Println("make", len(arr2), cap(arr2))
+	arr2 = make([]int, 0, 5)
+	fmt.Println("make", len(arr2), cap(arr2))
+
+	// 映射
+	var _ map[int]int
+	m := map[string]Vertex{"Bell Labs": {4, 4}}
+	m["Google"] = Vertex{5, 6}
+	m["Google"] = Vertex{7, 8}
+	fmt.Println(m)
+	delete(m, "Bell Labs")
+	fmt.Println(m)
+	e := m["Google"]
+	fmt.Println("element", e)
+	element, exist := m["Google"]
+	fmt.Println("element", element, exist)
+	m = make(map[string]Vertex, 5)
+
+	// 函数（也是数据类型的一种）
+	fun := func() { fmt.Println("function data") }
+	fun()
 }
